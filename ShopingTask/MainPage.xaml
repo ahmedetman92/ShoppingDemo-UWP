@@ -1,0 +1,88 @@
+﻿<Page
+    x:Class="ShopingTask.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ShopingTask"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded">
+
+
+
+
+    <GridView HorizontalAlignment="Center"
+            x:Name="itemList"  
+                  IsItemClickEnabled="True"
+           Background="Aqua"
+                  SelectionMode="None"
+                  IsSwipeEnabled="false"
+              Width="200"  >
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="phone">
+                    <VisualState.Setters>
+                        <Setter Target="itemList.(FrameworkElement.Width)"
+                                Value="10" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="tablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                    <Storyboard>
+                        <ColorAnimation Duration="0"
+                                        To="#FFFF5D01"
+                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                        Storyboard.TargetName="itemList"
+                                        d:IsOptimized="True" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="desktop">
+                    <VisualState.Setters>
+                        <Setter Target="itemList.(Control.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="Black" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="itemList.(FrameworkElement.Height)"
+                                Value="500" />
+                        <Setter Target="itemList.(FrameworkElement.Width)"
+                                Value="500" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800" />
+                    </VisualState.StateTriggers>
+                    <Storyboard>
+                        <ColorAnimation Duration="0"
+                                        To="#FFF71212"
+                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                        Storyboard.TargetName="itemList"
+                                        d:IsOptimized="True" />
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <!--<GridView.ItemTemplate>
+            <DataTemplate>
+                <Border  Background="#ff6b00"  >
+                    <Grid Margin="10" Height="250" Width="250">
+                        <Rectangle   RadiusX="5" RadiusY="5">
+                            <Rectangle.Fill>
+                                <ImageBrush Stretch="UniformToFill" ImageSource="{Binding media.images[0].largeHdUrl}" Opacity="0.9"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <StackPanel VerticalAlignment="Bottom" Background="#ff6b00" Height="34">
+                            <TextBlock Text="{Binding name}" TextAlignment="Center" FontSize="12"  Foreground="White"  TextWrapping="Wrap" FontWeight="Bold" />
+                            <TextBlock Text="{Binding units[0].price.formatted}" TextAlignment="Center" FontSize="12"  Foreground="White" TextWrapping="Wrap" />
+
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </GridView.ItemTemplate>-->
+    </GridView>
+   
+</Page>
